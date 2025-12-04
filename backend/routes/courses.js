@@ -110,12 +110,24 @@ router.post('/:id/progress', authenticate, async (req, res) => {
                 .eq('id', req.params.id)
                 .single();
 
-            const xpGain = Math.floor(course.xp_reward / course.topics.length);
+            const xpGain = (course.topics && course.topics.length > 0)
+                ? Math.floor(course.xp_reward / course.topics.length)
+                : 0;
 
-            await supabase.rpc('increment_xp', {
-                user_id: req.userId,
-                xp_amount: xpGain
-            });
+            // Get current XP
+            const { data: profile } = await supabase
+                .from('profiles')
+                .select('xp')
+                .eq('id', req.userId)
+                .single();
+
+            const newXp = (profile?.xp || 0) + xpGain;
+
+            // Update XP directly
+            await supabase
+                .from('profiles')
+                .update({ xp: newXp })
+                .eq('id', req.userId);
 
             // Update current topic
             await supabase

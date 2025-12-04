@@ -190,10 +190,9 @@ export default function CoursePage() {
 
                     <div className="stats-card">
                         <div id="luro-img-container">
-                            <img id="luro-img" src="/Pixel Art Otter Creature.png" alt="luro image"></img>
+                            <img id="luro-img" src={course.thumbnail || "/Pixel Art Otter Creature.png"} alt={course.title} />
                         </div>
                         <div className="stats-info">
-                            <h3>Otter</h3>
                             <p>Level {userProfile?.level || 1}</p>
                             <p>XP: {userProfile?.xp || 0}</p>
                         </div>
