@@ -23,6 +23,14 @@ app.get('/', (req, res) => {
     res.json({ message: 'Sagepath API is running with Supabase' });
 });
 
+app.get('/api', (req, res) => {
+    res.json({ message: 'Sagepath API is running with Supabase (API Root)' });
+});
+
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 export default app;
 
 if (process.env.NODE_ENV !== 'production') {
