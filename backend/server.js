@@ -14,10 +14,18 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/courses', courseRoutes);
-app.use('/api/community', communityRoutes);
+// Mount routes with and without /api prefix to handle Vercel path stripping
+const routes = [
+    { path: '/auth', route: authRoutes },
+    { path: '/users', route: userRoutes },
+    { path: '/courses', route: courseRoutes },
+    { path: '/community', route: communityRoutes }
+];
+
+routes.forEach(({ path, route }) => {
+    app.use(`/api${path}`, route);
+    app.use(path, route);
+});
 
 app.get('/', (req, res) => {
     res.json({ message: 'Sagepath API is running with Supabase' });
