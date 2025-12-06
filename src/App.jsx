@@ -16,6 +16,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage.jsx";
 import LuroCoursesPage from "./pages/LuroCoursesPage.jsx";
+import LumoraChat from "./components/LumoraChat";
 
 const routes = [
     { path: "/", element: <LandingPage /> },
@@ -31,7 +32,7 @@ const routes = [
 ];
 
 function App() {
-    
+
     const [darkMode, setDarkMode] = useState(() => {
         const savedTheme = localStorage.getItem("theme");
         return savedTheme ? savedTheme === "dark" : true;
@@ -54,6 +55,7 @@ function App() {
                 ))}
             </Routes>
             <Footer />
+            <ContextAwareLumora />
         </BrowserRouter>
     );
 }
@@ -65,4 +67,29 @@ function ConditionalNavbar(props) {
     const hidePaths = ["/", "/login", "/register", "/forgot-password"];
     if (hidePaths.includes(location.pathname)) return null;
     return <Navbar {...props} />;
+}
+
+function ContextAwareLumora() {
+    const location = useLocation();
+    const [context, setContext] = useState("");
+
+    useEffect(() => {
+        // Simple context injection based on route
+        if (location.pathname.startsWith("/course/")) {
+            const courseId = location.pathname.split("/")[2];
+            // In a real app, fetch course summary here.
+            // For demo, we inject a generic context.
+            setContext(`User is currently viewing Course ID: ${courseId}. Focus on topics related to this course.`);
+        } else if (location.pathname === "/community") {
+            setContext("User is in the Community section. They might ask about other users, posts, or discussions.");
+        } else {
+            setContext("");
+        }
+    }, [location]);
+
+    // Don't show on login/register pages
+    const hidePaths = ["/", "/login", "/register", "/forgot-password"];
+    if (hidePaths.includes(location.pathname)) return null;
+
+    return null; // Removed global LumoraChat
 }

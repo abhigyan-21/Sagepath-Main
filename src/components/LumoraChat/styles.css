@@ -1,0 +1,410 @@
+/* Lumora Chatbot Styles - Doubts Panel Theme */
+:root {
+  --lumora-bg: #1e293b;
+  /* Slate 800 */
+  --lumora-surface: #0f172a;
+  /* Slate 900 */
+  --lumora-text: #f8fafc;
+  /* Slate 50 */
+  --lumora-text-secondary: #94a3b8;
+  /* Slate 400 */
+  --lumora-primary: #3b82f6;
+  /* Blue 500 */
+  --lumora-primary-hover: #2563eb;
+  /* Blue 600 */
+  --lumora-border: #334155;
+  /* Slate 700 */
+  --lumora-user-bubble: #3b82f6;
+  --lumora-bot-bubble: #334155;
+  --lumora-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.lumora-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.lumora-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--lumora-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--lumora-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.2s;
+  font-size: 24px;
+}
+
+.lumora-toggle:hover {
+  transform: scale(1.05);
+  background-color: var(--lumora-primary-hover);
+}
+
+.lumora-window {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 400px;
+  height: 550px;
+  background-color: var(--lumora-bg);
+  border-radius: 16px;
+  box-shadow: var(--lumora-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--lumora-border);
+  transition: opacity 0.2s, transform 0.2s;
+  transform-origin: bottom right;
+}
+
+.lumora-window.closed {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* Header Section */
+.lumora-header {
+  padding: 20px;
+  background-color: var(--lumora-bg);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 1px solid var(--lumora-border);
+}
+
+.lumora-avatar {
+  width: 48px;
+  height: 48px;
+  background-color: #334155;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.lumora-header-content {
+  flex: 1;
+}
+
+.lumora-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--lumora-text);
+}
+
+.lumora-header p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--lumora-text-secondary);
+}
+
+.lumora-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.lumora-controls button {
+  background: none;
+  border: none;
+  color: var(--lumora-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.lumora-controls button:hover {
+  color: var(--lumora-text);
+  background-color: var(--lumora-border);
+}
+
+/* Messages Area */
+.lumora-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: var(--lumora-surface);
+}
+
+.lumora-message {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.lumora-message.user {
+  align-self: flex-end;
+  background-color: var(--lumora-user-bubble);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.lumora-message.bot {
+  align-self: flex-start;
+  background-color: var(--lumora-bot-bubble);
+  color: var(--lumora-text);
+  border-bottom-left-radius: 4px;
+}
+
+/* Input Area */
+.lumora-input-area {
+  padding: 16px;
+  background-color: var(--lumora-bg);
+  border-top: 1px solid var(--lumora-border);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.lumora-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.lumora-input-area input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--lumora-border);
+  background-color: var(--lumora-surface);
+  color: var(--lumora-text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.lumora-input-area input:focus {
+  border-color: var(--lumora-primary);
+}
+
+.lumora-input-area input::placeholder {
+  color: var(--lumora-text-secondary);
+}
+
+.lumora-send-btn {
+  background-color: var(--lumora-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.lumora-send-btn:hover:not(:disabled) {
+  background-color: var(--lumora-primary-hover);
+}
+
+.lumora-send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--lumora-border);
+}
+
+/* Progress & Footer */
+.lumora-progress {
+  padding: 20px;
+  text-align: center;
+  color: var(--lumora-text-secondary);
+  background-color: var(--lumora-surface);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lumora-progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--lumora-border);
+  border-radius: 3px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.lumora-progress-fill {
+  height: 100%;
+  background-color: var(--lumora-primary);
+  transition: width 0.3s ease;
+}
+
+.lumora-footer {
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 6px;
+  color: var(--lumora-text-secondary);
+  background-color: var(--lumora-bg);
+  border-top: 1px solid var(--lumora-border);
+}
+
+/* Typing Indicator */
+.typing-indicator span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--lumora-text-secondary);
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Embedded Mode Overrides */
+.lumora-embedded {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.lumora-embedded .lumora-window {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  width: 100%;
+  height: 300px;
+  /* Expanded height */
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  transform: none;
+  opacity: 1;
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.3s ease;
+}
+
+.lumora-collapsed .lumora-window {
+  height: auto;
+  /* Collapsed height (just header + input) */
+}
+
+.lumora-embedded .lumora-toggle {
+  display: none;
+}
+
+.lumora-embedded .lumora-header {
+  background: transparent;
+  border-bottom: none;
+  padding: 0 0 10px 0;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lumora-embedded .lumora-avatar {
+  display: none;
+}
+
+.lumora-embedded .lumora-header-content h3 {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.lumora-embedded .lumora-header-content p {
+  display: none;
+}
+
+.lumora-embedded .lumora-controls {
+  display: flex;
+  align-items: center;
+}
+
+.lumora-embedded .lumora-messages {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 1;
+  overflow-y: auto;
+  /* Ensure scrollable */
+}
+
+.lumora-embedded .lumora-input-area {
+  background: transparent;
+  border-top: none;
+  padding: 0;
+  gap: 10px;
+  display: flex;
+  align-items: stretch;
+  /* Stretch to match height */
+}
+
+.lumora-embedded .lumora-input-wrapper {
+  flex: 1;
+}
+
+.lumora-embedded .lumora-input-area input {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 12px;
+  border-radius: 8px;
+  width: 100%;
+  /* Ensure full width of wrapper */
+  box-sizing: border-box;
+  /* Include padding in width */
+  height: 42px;
+  /* Fixed height to match button */
+}
+
+.lumora-embedded .lumora-send-btn {
+  background: #006aff;
+  border-radius: 8px;
+  padding: 0 20px;
+  /* Horizontal padding only */
+  height: 42px;
+  /* Match input height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lumora-embedded .lumora-footer {
+  display: none;
+}

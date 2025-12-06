@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { courseAPI, userAPI } from '../services/api';
+import LumoraChat from '../components/LumoraChat';
 
 export default function CoursePage() {
     const { courseId } = useParams();
@@ -175,12 +176,10 @@ export default function CoursePage() {
                             <img id="doubt-mascot-img" src="/Pixel Wizard with Flaming Staff.png" alt="mascot"></img>
                         </div>
                         <div className="doubts-content">
-                            <h2>Doubts Panel</h2>
-                            <p>Have questions? Ask here!</p>
-                            <form className="doubts-form" onSubmit={(e) => e.preventDefault()}>
-                                <input type="text" placeholder="Type your question..." />
-                                <button type="submit">Ask</button>
-                            </form>
+                            <LumoraChat
+                                embedded={true}
+                                context={`Course: ${course.title}. Topic: ${currentTopic.title}. User Level: ${userProfile?.level || 1}`}
+                            />
                         </div>
                     </div>
                 </div>

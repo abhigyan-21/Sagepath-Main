@@ -517,7 +517,7 @@ body.light {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     padding: 20px;
     color: #ffffff;
@@ -547,41 +547,7 @@ body.light {
     flex: 1;
 }
 
-.doubts-content h2 {
-    margin: 0 0 8px 0;
-}
-
-.doubts-content p {
-    margin: 0 0 16px 0;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.doubts-form {
-    display: flex;
-    gap: 10px;
-}
-
-.doubts-form input[type="text"] {
-    flex: 1;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: var(--input-bg);
-    color: #ffffff;
-}
-
-.doubts-form button {
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: none;
-    background: #006aff;
-    color: #ffffff;
-    cursor: pointer;
-}
-
-.doubts-form button:hover {
-    background: #3b82f6;
-}
+/* Removed legacy doubts form styling */
 
 
 
